@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Golang WebAssembly TODO</title>
+    <script src="./build/wasm_exec.js"></script>
+    <link rel="stylesheet" href="./mycss.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <div id="root">
+    </div>
+    <script>
+        const go = new Go();
+        WebAssembly.instantiateStreaming(fetch('./build/main.wasm'), go.importObject).then((result) => {
+            go.run(result.instance);
+        });
+    </script>
+</body>
+</html>
